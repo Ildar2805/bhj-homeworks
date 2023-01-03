@@ -18,8 +18,8 @@ for (let el of quantityControlInc) {
 
 function productAdd(btn) {
     const {id} = btn.closest('.product').dataset;
+    const count = btn.previousElementSibling.querySelector('.product__quantity-value').textContent;
     if (addedId.includes(id)) {
-        const count = btn.previousElementSibling.querySelector('.product__quantity-value').textContent;
         const product = document.querySelector(`[data-id='${id}']`);
         product.querySelector('.cart__product-count').textContent = Number(product.querySelector('.cart__product-count').textContent) + Number(count)
     } else {
@@ -28,7 +28,6 @@ function productAdd(btn) {
         product.dataset.id = id;
         addedId.push(id);
 
-        const count = btn.previousElementSibling.querySelector('.product__quantity-value').textContent;
         const productCount = document.createElement('div');
         productCount.className = 'cart__product-count';
         productCount.textContent = count;
@@ -46,7 +45,9 @@ function productAdd(btn) {
 
 for (let btn of btnAdd) {
     btn.addEventListener('click', () => {
-        productAdd(btn);
+        if (+btn.previousElementSibling.querySelector('.product__quantity-value').textContent > 0) {
+            productAdd(btn);
+        }
     });
 }
 

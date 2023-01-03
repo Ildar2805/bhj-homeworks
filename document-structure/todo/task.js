@@ -27,11 +27,13 @@ let tasksList = document.getElementById('tasks__list');
 let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 savedTasks.forEach(addItem);
 
-input.addEventListener('keydown', (e) => {
+button.addEventListener('click', (e) => {
     let text = input.value;
-    if (e.code === 'Enter' && text === '') {
+    if (text.trim() === '') {
         alert('Please write something to do!');
-    } else if (e.code === 'Enter' && text) {
+        input.value = '';
+        e.preventDefault();
+    } else {
         savedTasks.push(text);
         localStorage.setItem("tasks", JSON.stringify(savedTasks));
         input.value = '';
