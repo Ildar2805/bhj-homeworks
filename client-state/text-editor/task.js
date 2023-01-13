@@ -2,12 +2,7 @@ const save = document.getElementById('save');
 const clear = document.getElementById('clear');
 const textarea = document.getElementById('editor');
 
-
-if (localStorage.getItem('text')) {
-    textarea.value = localStorage.getItem('text');
-} else {
-    textarea.placeholder = 'Введите текст';
-}
+textarea.value = localStorage.getItem('text');
 
 textarea.addEventListener('keyup', () => {
     const text = textarea.value;

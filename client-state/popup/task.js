@@ -9,11 +9,11 @@ let value = 'closed';
 const modalClose = document.querySelector('.modal__close_times');
 const parent = modalClose.closest('.modal');
 
-if (getCookie(name)) {
-    parent.classList.remove('modal_active');
-} else {
-    modalClose.addEventListener('click', () => {
-        parent.classList.remove('modal_active');
-        document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
-    });
+if (!getCookie(name)) {
+    parent.classList.add('modal_active');
 }
+ 
+modalClose.addEventListener('click', () => {
+    parent.classList.remove('modal_active');
+    document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+});
